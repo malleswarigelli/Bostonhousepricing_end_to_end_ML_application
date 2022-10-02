@@ -2,7 +2,6 @@
 =======
 # Bostonhousepricing_end_to_end_ML_application
 End to End DS project
->>>>>>> 4b5a47b71819b16ad13f669eaa42b6ceb20881a6
 ### Boston House Price Prediction - Regression
 
 ### Software And Tools Requirements
