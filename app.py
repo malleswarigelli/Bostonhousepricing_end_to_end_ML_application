@@ -38,6 +38,18 @@ def predict_api():
     # return o/p as json
     return jsonify(output[0])
 
+## create small web application, provide inputs, submit the form. As soon as we submit the form, take the data over here and predict the o/p
+@app.route('/predict', methods=['POST'])
+
+def predict():
+    data = [request.form.values()]
+    data = [float(x) for x in request.form.values()]
+    final_input = scalar.transform(np.array(data).reshape(1,-1))
+    print(final_input)
+    output = regmodel.predict(final_input)[0] # get 2D array, access 1st value
+    return render_template("home.html", prediction_text = "Predicted house price is {}".format(output))
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
