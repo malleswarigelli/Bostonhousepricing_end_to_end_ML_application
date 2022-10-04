@@ -1,4 +1,6 @@
+import json
 import pickle
+
 from flask import Flask, request, app, jsonify, url_for, render_template
 import numpy as np
 import pandas as pd
@@ -16,7 +18,7 @@ scalar = pickle.load(open('standardscaler.pkl','rb'))
 def home():
     return render_template('home.html')
 
-# create predict API (post request to API, generate o/p)
+# create predict API, is a post request. Collects data using postman, generating o/p after pushing through scalar and regression model)
 @app.route('/predict_api', methods=['POST'])
 
 # for API creation
@@ -26,7 +28,7 @@ def predict_api():
     print(data)
     print(data.values()) 
     # convert these values into list, then reshape the data as we did in regression.ipynb
-    print(np.array(list(data.values().reshape(1,-1))))
+    print(np.array(list(data.values())).reshape(1,-1))
     # then apply standard scaler
     new_data = scalar.transform(np.array(list(data.values())).reshape(1,-1))
     # predict o/p with regression model
